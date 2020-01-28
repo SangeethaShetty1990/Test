@@ -1,0 +1,47 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+public class SquareServlet extends HttpServlet{
+
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException
+	{
+		
+		//Cookie
+		Cookie[] cookies = request.getCookies();
+		String name = null;
+		String value = null;
+		for(Cookie c: cookies)
+		{
+			name = c.getName();
+			value = c.getValue();
+		}
+		PrintWriter out = response.getWriter();
+		out.write("name:" + name);
+		out.write("value:" + value);
+		
+		/*//Http session
+		HttpSession session = request.getSession();
+		int k= (int) session.getAttribute("k");
+		PrintWriter out = response.getWriter();
+		out.write("result is :" + (k));
+		*/
+		// URL rewriting
+		/*int k = Integer.parseInt(request.getParameter("k"));
+		PrintWriter out = response.getWriter();
+		 k = k*k;
+		out.write("result is :" + (k));
+		*/
+		
+		/*int k = (int)(request.getAttribute("k"));
+		k = k*k;
+		PrintWriter out = response.getWriter();
+		out.write("result is :" + (k));*/
+		
+	}
+}

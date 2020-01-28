@@ -1,0 +1,38 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class AddServlet extends HttpServlet{
+
+	//service method of servlet
+	//public void service(HttpServletRequest request,HttpServletResponse response) throws IOException
+	//we can use doPost and doGet methods. doPost is secure , so use doPost
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException
+	{
+
+		int i = Integer.parseInt(request.getParameter("num1"));
+		int j = Integer.parseInt(request.getParameter("num2"));
+
+		int k = i+j; 
+		//System.out.println(k);
+		PrintWriter out = response.getWriter();
+		out.print("result is :" + k);
+		
+		response.sendRedirect("square?k="+k);
+
+		/*//set k value in request object
+		request.setAttribute("k", k);
+		// to send data from one servlet to another
+		RequestDispatcher reqdis = request.getRequestDispatcher("square");
+		reqdis.forward(request, response);
+*/
+
+
+	}
+
+}
